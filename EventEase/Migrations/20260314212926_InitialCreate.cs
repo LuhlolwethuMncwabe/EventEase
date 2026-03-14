@@ -75,7 +75,7 @@ namespace EventEase.Migrations
                     BookingID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     NumberOfSeats = table.Column<int>(type: "int", nullable: false),
                     BookedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EventID = table.Column<int>(type: "int", nullable: false),
