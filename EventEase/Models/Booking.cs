@@ -1,5 +1,6 @@
 ﻿using EventEase.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventEase.Models
 {
@@ -13,8 +14,10 @@ namespace EventEase.Models
         [Required]
         [Display(Name = "Total Amount")]
         [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal TotalAmount { get; set; }
 
+       
         [Required]
         [Display(Name = "Number of Seats")]
         public int NumberOfSeats { get; set; }
