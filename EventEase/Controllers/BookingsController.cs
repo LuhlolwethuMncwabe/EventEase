@@ -9,6 +9,7 @@ using EventEase.Models;
 
 namespace EventEase.Controllers
 {
+    [Route("Bookings")]
     public class BookingsController : Controller
     {
         private readonly ApplicationDbContext _context;
