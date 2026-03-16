@@ -31,6 +31,6 @@ namespace EventEase.Models
 
         // Navigation Property
         [Display(Name = "Venue")]
-        public Venue Venue { get; set; }
+        public Venue? Venue { get; set; }
     }
 }
