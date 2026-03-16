@@ -31,9 +31,9 @@ namespace EventEase.Models
 
         // Navigation Properties
         [Display(Name = "Event")]
-        public Event Event { get; set; }
+        public Event? Event { get; set; }
 
         [Display(Name = "Customer")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
     }
 }
