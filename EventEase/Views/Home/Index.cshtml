@@ -2,15 +2,7 @@
     ViewData["Title"] = "Home";
 }
 
-<!-- Hero Section -->
-<div class="p-5 mb-4 bg-dark text-white rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Welcome to EventEase 🎉</h1>
-        <p class="col-md-8 fs-4">Your one stop platform for managing venues, events, customers and bookings with ease.</p>
-        <a class="btn btn-primary btn-lg" asp-controller="Events" asp-action="Index">Browse Events</a>
-        <a class="btn btn-outline-light btn-lg ms-2" asp-controller="Venues" asp-action="Index">View Venues</a>
-    </div>
-</div>
+
 
 <!-- Quick Access Cards -->
 <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
@@ -18,7 +10,7 @@
         <div class="card h-100 shadow">
             <img src="https://placehold.co/600x200?text=Venues" class="card-img-top" alt="Venues"/>
             <div class="card-body">
-                <h5 class="card-title">🏛️ Venues</h5>
+                <h5 class="card-title"> Venues</h5>
                 <p class="card-text">Browse and manage all available venues for your events.</p>
                 <a asp-controller="Venues" asp-action="Index" class="btn btn-dark">View Venues</a>
             </div>
@@ -28,7 +20,7 @@
         <div class="card h-100 shadow">
             <img src="https://placehold.co/600x200?text=Events" class="card-img-top" alt="Events"/>
             <div class="card-body">
-                <h5 class="card-title">🎭 Events</h5>
+                <h5 class="card-title"> Events</h5>
                 <p class="card-text">Discover and manage upcoming events happening near you.</p>
                 <a asp-controller="Events" asp-action="Index" class="btn btn-dark">View Events</a>
             </div>
@@ -38,7 +30,7 @@
         <div class="card h-100 shadow">
             <img src="https://placehold.co/600x200?text=Customers" class="card-img-top" alt="Customers"/>
             <div class="card-body">
-                <h5 class="card-title">👥 Customers</h5>
+                <h5 class="card-title">Customers</h5>
                 <p class="card-text">Manage your customer base and their information.</p>
                 <a asp-controller="Customers" asp-action="Index" class="btn btn-dark">View Customers</a>
             </div>
@@ -48,7 +40,7 @@
         <div class="card h-100 shadow">
             <img src="https://placehold.co/600x200?text=Bookings" class="card-img-top" alt="Bookings"/>
             <div class="card-body">
-                <h5 class="card-title">📋 Bookings</h5>
+                <h5 class="card-title">Bookings</h5>
                 <p class="card-text">Track and manage all event bookings and reservations.</p>
                 <a asp-controller="Bookings" asp-action="Index" class="btn btn-dark">View Bookings</a>
             </div>
