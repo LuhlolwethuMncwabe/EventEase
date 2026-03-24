@@ -1,8 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+<style>
+    body {
+        background-color: #A67C52;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
 
+    .card {
+        background-color: white (255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
+    }
+ .btn-brown {
+        background-color: #A67C52;
+        color: white;
+        border: none;
+    }
 
+        .btn-brown:hover {
+            background-color: #8B6343;
+            color: white;
+        }
+</style>
 
 <!-- Quick Access Cards -->
 <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
@@ -12,7 +33,7 @@
             <div class="card-body">
                 <h5 class="card-title"> Venues</h5>
                 <p class="card-text">Browse and manage all available venues for your events.</p>
-                <a asp-controller="Venues" asp-action="Index" class="btn btn-dark">View Venues</a>
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-brown">View Venues</a>
             </div>
         </div>
     </div>
@@ -22,7 +43,7 @@
             <div class="card-body">
                 <h5 class="card-title"> Events</h5>
                 <p class="card-text">Discover and manage upcoming events happening near you.</p>
-                <a asp-controller="Events" asp-action="Index" class="btn btn-dark">View Events</a>
+                <a asp-controller="Events" asp-action="Index" class="btn btn-brown">View Events</a>
             </div>
         </div>
     </div>
@@ -32,7 +53,7 @@
             <div class="card-body">
                 <h5 class="card-title">Customers</h5>
                 <p class="card-text">Manage your customer base and their information.</p>
-                <a asp-controller="Customers" asp-action="Index" class="btn btn-dark">View Customers</a>
+                <a asp-controller="Customers" asp-action="Index" class="btn btn-brown">View Customers</a>
             </div>
         </div>
     </div>
@@ -42,7 +63,7 @@
             <div class="card-body">
                 <h5 class="card-title">Bookings</h5>
                 <p class="card-text">Track and manage all event bookings and reservations.</p>
-                <a asp-controller="Bookings" asp-action="Index" class="btn btn-dark">View Bookings</a>
+                <a asp-controller="Bookings" asp-action="Index" class="btn btn-brown">View Bookings</a>
             </div>
         </div>
     </div>
