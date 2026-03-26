@@ -12,6 +12,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Image</th>
             <th>
                 @Html.DisplayNameFor(model => model.NameOfVenue)
             </th>
@@ -37,6 +38,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+              <img src="@item.ImageUrl" alt="@item.NameOfVenue" 
+                style="width:100px; height:70px; object-fit:cover; border-radius:5px;" />
+
+                </td>
+                <td>
                 @Html.DisplayFor(modelItem => item.NameOfVenue)
             </td>
             <td>
