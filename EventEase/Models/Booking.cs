@@ -18,12 +18,15 @@ namespace EventEase.Models
         [Required]
         [Display(Name = "Total Amount")]
         [DataType(DataType.Currency)]
+
+        [Range(0.01, 100000)]// this prevent 
         [Column(TypeName = "decimal(10,2)")]
         public decimal TotalAmount { get; set; }
 
         // Number of seats bookes
         [Required]
         [Display(Name = "Number of Seats")]
+        [Range(1, 1000)] // This prevents 0 seat bookings 
         public int NumberOfSeats { get; set; }
 
         // Date and time the booking was made
