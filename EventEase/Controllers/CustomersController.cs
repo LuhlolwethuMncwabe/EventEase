@@ -14,12 +14,12 @@ namespace EventEase.Controllers
     {
         // Database context, used to communicate with DB
 
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         // A constructor.
         public CustomersController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // Get customers 
@@ -27,7 +27,7 @@ namespace EventEase.Controllers
         public async Task<IActionResult> Index()
         {
             //retrieves all customers from the database
-            return View(await _context.Customers.ToListAsync());
+            return View(await context.Customers.ToListAsync());
         }
 
         
@@ -39,7 +39,7 @@ namespace EventEase.Controllers
                 return NotFound();
             }
             //Retrieves customer by the ID
-            var customer = await _context.Customers
+            var customer = await context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerID == id);
 
             //if the customerId is not found return a null
@@ -68,8 +68,8 @@ namespace EventEase.Controllers
             {
 
                 //Adds the customer to DB
-                _context.Add(customer);
-                await _context.SaveChangesAsync(); //saves the changes made
+                context.Add(customer);
+                await context.SaveChangesAsync(); //saves the changes made
                 return RedirectToAction(nameof(Index));// redirects to the list
             }
             // if the validation fails it returns the form with errors
@@ -84,7 +84,7 @@ namespace EventEase.Controllers
                 return NotFound();
             }
             // finds the customer by ID
-            var customer = await _context.Customers.FindAsync(id);
+            var customer = await context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -108,8 +108,8 @@ namespace EventEase.Controllers
                 try
                 {
                     // Update customer
-                    _context.Update(customer);
-                    await _context.SaveChangesAsync();
+                    context.Update(customer);
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -136,7 +136,7 @@ namespace EventEase.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var customer = await context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerID == id);
             if (customer == null)
             {
@@ -151,22 +151,22 @@ namespace EventEase.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.FindAsync(id);
+            var customer = await context.Customers.FindAsync(id);
 
             // Remove if exists
             if (customer != null)
             {
-                _context.Customers.Remove(customer);
+                context.Customers.Remove(customer);
             }
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         //this line checks for existence 
         private bool CustomerExists(int id)
         {
-            return _context.Customers.Any(e => e.CustomerID == id);
+            return context.Customers.Any(e => e.CustomerID == id);
         }
     }
 }
