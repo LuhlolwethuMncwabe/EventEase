@@ -8,32 +8,41 @@ using Microsoft.EntityFrameworkCore;
 using EventEase.Models;
 
 namespace EventEase.Controllers
-{ 
+{
+    //This handles all operations related to Customers
     public class CustomersController : Controller
     {
+        // Database context, used to communicate with DB
+
         private readonly ApplicationDbContext _context;
 
+        // A constructor.
         public CustomersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Customers
+        // Get customers 
+        //this returns  a list of all customers 
         public async Task<IActionResult> Index()
         {
+            //retrieves all customers from the database
             return View(await _context.Customers.ToListAsync());
         }
 
-        // GET: Customers/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
+            // Checks if Id is missing 
             if (id == null)
             {
                 return NotFound();
             }
-
+            //Retrieves customer by the ID
             var customer = await _context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerID == id);
+
+            //if the customerId is not found return a null
             if (customer == null)
             {
                 return NotFound();
@@ -42,36 +51,39 @@ namespace EventEase.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Create
+        // get customer
         public IActionResult Create()
         {
+            //just returns an empty form
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]// prevents CSRF attacks 
         public async Task<IActionResult> Create([Bind("CustomerID,FirstName,Email,PhoneNumber")] Customer customer)
         {
+            //Checks if the data is valid 
             if (ModelState.IsValid)
             {
+
+                //Adds the customer to DB
                 _context.Add(customer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync(); //saves the changes made
+                return RedirectToAction(nameof(Index));// redirects to the list
             }
+            // if the validation fails it returns the form with errors
             return View(customer);
         }
 
-        // GET: Customers/Edit/5
+       
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            // finds the customer by ID
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
@@ -80,9 +92,7 @@ namespace EventEase.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CustomerID,FirstName,Email,PhoneNumber")] Customer customer)
@@ -92,15 +102,18 @@ namespace EventEase.Controllers
                 return NotFound();
             }
 
+            // Ensures the  route ID matches object ID
             if (ModelState.IsValid)
             {
                 try
                 {
+                    // Update customer
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    // If the customer no longer exists 
                     if (!CustomerExists(customer.CustomerID))
                     {
                         return NotFound();
@@ -115,7 +128,7 @@ namespace EventEase.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Delete/5
+       
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,12 +146,14 @@ namespace EventEase.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var customer = await _context.Customers.FindAsync(id);
+
+            // Remove if exists
             if (customer != null)
             {
                 _context.Customers.Remove(customer);
@@ -148,6 +163,7 @@ namespace EventEase.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //this line checks for existence 
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.CustomerID == id);

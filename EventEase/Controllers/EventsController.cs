@@ -9,6 +9,7 @@ using EventEase.Models;
 
 namespace EventEase.Controllers
 {
+    // This controller is the same but it includes Venue (relationship)
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,18 +22,19 @@ namespace EventEase.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
+            // Include() loades related to thevenue data
             var applicationDbContext = _context.Events.Include(e => e.Venue);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Events/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            // the @event is udes because event is a reserved keyword in C#
             var @event = await _context.Events
                 .Include(e => e.Venue)
                 .FirstOrDefaultAsync(m => m.EventID == id);
@@ -47,13 +49,13 @@ namespace EventEase.Controllers
         // GET: Events/Create
         public IActionResult Create()
         {
+            //A dropdown for venue selection
             ViewData["VenueID"] = new SelectList(_context.Venues, "VenueID", "Email");
             return View();
         }
 
         // POST: Events/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EventID,EventDate,StartOfEvent,EndOfEvent,TotalSeats,ImageUrl,VenueID")] Event @event)
@@ -64,11 +66,12 @@ namespace EventEase.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            // rebuilds the dropdown if valididation fails 
             ViewData["VenueID"] = new SelectList(_context.Venues, "VenueID", "Email", @event.VenueID);
             return View(@event);
         }
 
-        // GET: Events/Edit/5
+        // the Edit and Delete follow same create, read, update and delete CRUD pattern as Customers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,9 +88,7 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // POST: Events/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EventID,EventDate,StartOfEvent,EndOfEvent,TotalSeats,ImageUrl,VenueID")] Event @event)
@@ -121,7 +122,7 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // GET: Events/Delete/5
+        // GET: Events/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,7 +141,7 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // POST: Events/Delete/5
+        // POST: Events/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

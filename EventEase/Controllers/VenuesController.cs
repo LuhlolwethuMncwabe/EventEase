@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EventEase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EventEase.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Threading.Tasks;
 
 namespace EventEase.Controllers
 {
 
+    // this handles create, read, update and delete (CRUD) for Venues
     public class VenuesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,10 +24,11 @@ namespace EventEase.Controllers
         // GET: Venues
         public async Task<IActionResult> Index()
         {
+            // Retrieves all the venues
             return View(await _context.Venues.ToListAsync());
         }
 
-        // GET: Venues/Details/5
+        // GET: Venues/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,8 +53,6 @@ namespace EventEase.Controllers
         }
 
         // POST: Venues/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VenueID,NameOfVenue,VenueAddress,Capacity,VenueLocation,Email,ImageUrl")] Venue venue)
@@ -65,7 +66,7 @@ namespace EventEase.Controllers
             return View(venue);
         }
 
-        // GET: Venues/Edit/5
+        // The edit and delete follow the same pattern as the customers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +82,7 @@ namespace EventEase.Controllers
             return View(venue);
         }
 
-        // POST: Venues/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Venues/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("VenueID,NameOfVenue,VenueAddress,Capacity,VenueLocation,Email,ImageUrl")] Venue venue)
@@ -116,7 +115,7 @@ namespace EventEase.Controllers
             return View(venue);
         }
 
-        // GET: Venues/Delete/5
+        // GET: Venues/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +133,7 @@ namespace EventEase.Controllers
             return View(venue);
         }
 
-        // POST: Venues/Delete/5
+        // POST: Venues/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
