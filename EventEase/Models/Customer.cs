@@ -26,5 +26,7 @@ namespace EventEase.Models
         [Phone]
         [StringLength(15)]
         public string PhoneNumber { get; set; }
+
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

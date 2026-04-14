@@ -40,5 +40,7 @@ namespace EventEase.Models
         // Navigation Property
         [Display(Name = "Venue")]
         public Venue? Venue { get; set; }
+
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

@@ -19,7 +19,7 @@ namespace EventEase.Models
         [Display(Name = "Total Amount")]
         [DataType(DataType.Currency)]
 
-        [Range(0.01, 100000)]// this prevent 
+        [Range(0.01, 100000)]// this prevents long number input 
         [Column(TypeName = "decimal(10,2)")]
         public decimal TotalAmount { get; set; }
 
