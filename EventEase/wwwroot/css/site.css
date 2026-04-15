@@ -29,3 +29,22 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border-right: 1px solid #ccc; /*  vertical lines */
+    padding: 10px;
+    text-align: left;
+}
+
+    th:last-child, td:last-child {
+        border-right: none; /* remove last vertical line */
+}
+
+tr {
+    border-bottom: 1px solid #ccc; /* horizontal lines */
+}
