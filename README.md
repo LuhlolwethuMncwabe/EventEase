@@ -1,39 +1,6 @@
 CLDV
 PART 1
-GitHub Link
-
-https://github.com/LuhlolwethuMncwabe/EventEase.git 
-
 YouTube Video
-
-
-
-MySQL screenshots
- 
-
- 
- 
-
- 
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-ERD
- 
-
 
 Cloud Computing Basics (qD)
 1. Cloud deployed regarding security
