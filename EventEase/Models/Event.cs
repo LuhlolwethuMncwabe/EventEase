@@ -32,7 +32,7 @@ namespace EventEase.Models
 
         // The url for the event image
         [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         // Foreign Key
         public int VenueID { get; set; }

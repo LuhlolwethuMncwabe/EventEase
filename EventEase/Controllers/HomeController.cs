@@ -7,7 +7,7 @@ namespace EventEase.Controllers
     // this handles general pages not database Create, read, update and delete (CRUD)
     public class HomeController : Controller
     {
-        // The landing page
+        // The landing page  
         public IActionResult Index()
         {
             return View();

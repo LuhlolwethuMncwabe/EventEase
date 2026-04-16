@@ -34,7 +34,7 @@ namespace EventEase.Models
 
         // Image representing the venue
         [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public List<Event> Events { get; set; } = new List<Event>();
     }
